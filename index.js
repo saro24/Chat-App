@@ -15,12 +15,16 @@ var server = http.createServer(app);
 var io= socketio(server);
 
 var {generateMsg } = require("./js/util");
-
 io.on("connection",(socket)=> {
+  socket.on("join" , ({name , room})=>{
+  socket.join(room);
+  console.log(name);
   socket.emit("message", generateMsg("Start Sharing your thought" , " "));
-  socket.broadcast.emit("message","a new user has joid the discussion");
+  socket.broadcast.to(room).emit("message",generateMsg( name+" has joid the discussion",""));
 
-  socket.on("sendMessage", (msg , callback) => {
+  })
+
+  socket.on("message", (msg , callback) => {
     var filt= new filter();
     if(filt.isProfane(msg.text)) {
      return   callback("Profanity is not allowed");

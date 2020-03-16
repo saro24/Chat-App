@@ -8,30 +8,11 @@
   <link rel="stylesheet" href="index.css">
 </head>
 <body>
-  <div class="wholeContainer">
-  <div class="left">
-
-  </div>
- <div class="container">
-   <div id="messages">
-     <script id="messageTemp" type="text/html">
-           <div class="oneMsg">
-             <p class="msg"> {{message}} </p>
-             <p id="time"> {{createdAt}}   <a href="{{location}}" target="_blank"> location</a></p>
-           </div>
-     </script>
-  </div>
-  <div class="messaging">
-   <button  id="send"> <i class="fa fa-paper-plane"></i></button>
-  <button id="location"><i  class="fa fa-map-marker"></i></button>
-   <input  id="message" placeholder="Write..." required />
- </div>
-</div>
-</div>
-  <script src="//cdnjs.cloudflare.com/ajax/libs/moment.js/2.7.0/moment.min.js" type="text/javascript"></script>
-  <script src="https://unpkg.com/mustache@latest"></script>
-  <script src="/socket.io/socket.io.js"> </script>
-  <script src="/js/chat.js"> </script>
-
+  <form method="get" action="chat.html">
+   <h1>Join </h1>
+  <input name ="name" placeholder="Name" required/>
+  <input  name="room"placeholder="Room Chat" required/>
+  <button> Join </button>
+  </form>
 </body>
 </html>

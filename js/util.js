@@ -1,4 +1,5 @@
 var generateMsg = (text , location) => {
+  console.log(text);
    return {
       text,
       location,
