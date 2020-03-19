@@ -4,6 +4,8 @@ var msg= document.querySelector("#message");
 var sendloc= document.querySelector("#location");
 var messageTem= document.querySelector("#messageTemp").innerHTML;
 var msgContainner= document.querySelector("#messages");
+var rooms= document.querySelector("#room").innerHTML;
+
 var allowed= false;
 
 
@@ -13,7 +15,8 @@ socket.on("message", (msg) =>{
     var html = Mustache.render(messageTem , {
       message:  msg.text,
       createdAt:moment(msg.createdAt).format("h:m a"),
-      location:msg.location
+      location:msg.location,
+      user:msg.user
     });
     msgContainner.insertAdjacentHTML('beforeend', html);
   }else {
@@ -21,6 +24,14 @@ socket.on("message", (msg) =>{
   }
 });
 
+socket.on("room", ({room,users}) => {
+console.log(room +" "+users);
+var html = Mustache.render(rooms , {
+  room,
+  users
+});
+document.querySelector(".left").innerHTML=html;
+})
 sendmsg.addEventListener("click" , () => {
   sendmsg.disabled=true;
   navigator.geolocation.getCurrentPosition((data)=> {
@@ -63,4 +74,9 @@ function QueryStringToJSON() {
 }
 
 var {name , room} = QueryStringToJSON();
- socket.emit("join" , {name, room});
+ socket.emit("join" , {name, room},(error)=>{
+   if(error) {
+     alert(error);
+     location.href="../index.html";
+   }
+ } );

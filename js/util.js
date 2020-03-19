@@ -1,8 +1,9 @@
-var generateMsg = (text , location) => {
+var generateMsg = (text , location, user) => {
   console.log(text);
    return {
       text,
       location,
+      user,
       createdAt: new Date().getTime()
    }
 }

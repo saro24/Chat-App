@@ -10,14 +10,22 @@
 <body>
   <div class="wholeContainer">
   <div class="left">
-
+   <script id="room" type="text/html">
+     <h1 class="roomTitle"><i class="fa fa-users"></i> {{room}}</h1>
+     <div class="users">
+       {{#users}}
+      <div class="oneUser"><i class="fa fa-user"></i>  {{.}} </div>
+      {{/users}}
+    </div>
+   </script>
   </div>
  <div class="container">
    <div id="messages">
      <script id="messageTemp" type="text/html">
            <div class="oneMsg">
+             <p class="user">{{user}}</p>
              <p class="msg"> {{message}} </p>
-             <p id="time"> {{createdAt}}   <a href="{{location}}" target="_blank"> location</a></p>
+             <p class="time"> {{createdAt}}   <a href="{{location}}" target="_blank"> location</a></p>
            </div>
      </script>
   </div>
