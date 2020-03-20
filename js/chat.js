@@ -46,6 +46,7 @@ sendmsg.addEventListener("click" , () => {
       console.log("Delivered");
     });
   })
+  scrollDown();
 });
 
 sendloc.addEventListener("click" , ()=> {
@@ -55,6 +56,11 @@ sendloc.addEventListener("click" , ()=> {
     allowed= true;
   }
 });
+
+var scrollDown = () => {
+ 
+$("#messages").animate({ scrollTop: $("#messages").height() }, 20);
+}
 // for the private discussions
 // parsing the URL
 // inspired from https://www.developerdrive.com/turning-the-querystring-into-a-json-object-using-javascript/
